@@ -44,11 +44,25 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public TeamDto updateTeam(Long id, TeamDto teamDto) {
+        TeamEntity existingTeam = teamRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Team not found with id: " + id));
+
+        existingTeam.setName(teamDto.getName());
+        existingTeam.setSlogan(teamDto.getSlogan());
+
+        TeamEntity updatedTeam = teamRepository.save(existingTeam);
+        return teamMapper.toDto(updatedTeam);
+    }
+
+    @Override
     public void deleteTeam(Long id) {
         TeamEntity teamEntity = teamRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Team not found with id: " + id));
         teamRepository.delete(teamEntity);
     }
+
+
 
 
 }

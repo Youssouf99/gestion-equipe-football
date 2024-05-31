@@ -3,6 +3,7 @@ package fr.sorbonne.paris.nord.university.api.controllers;
 import fr.sorbonne.paris.nord.university.api.dtos.TeamDto;
 import fr.sorbonne.paris.nord.university.api.entities.TeamEntity;
 import fr.sorbonne.paris.nord.university.api.services.TeamService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,12 @@ public class TeamController {
     public ResponseEntity<TeamDto> createTeam(@RequestBody TeamDto teamDto) {
         TeamDto savedTeam = teamService.saveTeam(teamDto);
         return ResponseEntity.ok(savedTeam);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TeamDto> updateTeam(@PathVariable Long id, @Valid @RequestBody TeamDto teamDto) {
+        TeamDto updatedTeam = teamService.updateTeam(id, teamDto);
+        return new ResponseEntity<>(updatedTeam, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
