@@ -1,28 +1,28 @@
-import logo from "./logo.svg";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import TeamList from "./components/TeamList";
+import TeamForm from "./components/TeamForm";
+import TeamDetails from "./components/TeamDetails";
+import React from "react";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <button type="button" class="btn btn-primary">
-        Primary
-      </button>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <div className="container mt-4">
+          <h1 className="mb-4">Gestion des équipes</h1>
+          <Routes>
+            <Route path="/teams" element={<TeamList />} />
+            <Route path="/teams/new" element={<TeamForm />} />
+            <Route path="/teams/:id/edit" element={<TeamForm />} />
+            <Route path="/teams/:id" element={<TeamDetails />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
