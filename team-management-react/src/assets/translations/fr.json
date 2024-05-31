@@ -1,0 +1,22 @@
+{
+  "teamList.title": "Liste des équipes",
+  "teamList.addNewTeam": "Ajouter une nouvelle équipe",
+  "teamForm.title.create": "Créer une équipe",
+  "teamForm.title.edit": "Modifier l'équipe",
+  "teamForm.name": "Nom",
+  "teamForm.slogan": "Slogan",
+  "teamForm.createButton": "Créer",
+  "teamForm.updateButton": "Mettre à jour",
+  "teamForm.cancelButton": "Annuler",
+  "teamDetails.title": "Détails de l'équipe",
+  "teamDetails.deleteButton": "Supprimer",
+  "teamDetails.editButton": "Modifier",
+  "teamDetails.backButton": "Retour",
+  "loading": "Chargement...",
+  "error": "Erreur: {message}",
+  "error.fetchingTeam": "Erreur lors de la récupération de l'équipe. Veuillez réessayer plus tard.",
+  "error.deletingTeam": "Erreur lors de la suppression de l'équipe. Veuillez réessayer plus tard.",
+  "error.updatingTeam": "Erreur lors de la mise à jour de l'équipe. Veuillez réessayer plus tard.",
+  "error.creatingTeam": "Erreur lors de la création de l'équipe. Veuillez réessayer plus tard.",
+  "error.fetchingTeams": "Erreur lors de la récupération des équipes. Veuillez réessayer plus tard."
+}
