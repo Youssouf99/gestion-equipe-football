@@ -1,155 +1,108 @@
-# Getting Started
 
-### Reference Documentation
+# Gestion d'équipe - Backend
 
-For further reference, please consider the following sections:
+Développer une application en Spring boot qui permet de gérer des équipes de Football
+## Table des matières
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.3.0/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.3.0/maven-plugin/reference/html/#build-image)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#using.devtools)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#web)
+1. [Introduction](#introduction)
+2. [Technologies utilisées](#technologies-utilisées)
+3. [Structure du projet](#structure-du-projet)
+4. [Endpoints API](#endpoints-api)
+5. [Tests](#tests)
+6. [Déploiement](#déploiement)
+7. [Contribuer](#contribuer)
+8. [Licence](#licence)
 
-### Guides
+## Introduction
 
-The following guides illustrate how to use some features concretely:
+Description plus détaillée de votre projet.
 
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+## Technologies utilisées
 
+Liste des principales technologies utilisées dans votre projet.
 
-# Explications des tests
+- Java
+- Spring Boot
+- Hibernate
+- MySQL
+- Maven (ou Gradle)
 
-* `@WebMvcTest` : Cette annotation est utilisée pour tester les contrôleurs Spring MVC. Elle configure uniquement les parties nécessaires de l'infrastructure Spring MVC et ne charge pas l'ensemble de l'application.
+## Structure du projet
 
-* `@Mock et @InjectMocks` : Ces annotations de Mockito sont utilisées pour injecter les dépendances simulées dans le contrôleur TeamController.
-
-* `MockMvc` : C'est une classe fournie par Spring pour tester les contrôleurs sans démarrer un serveur HTTP.
-
-* `setup()` : Cette méthode configure les mocks avant chaque test.
-
-* `@BeforeEach` : Annotation JUnit pour exécuter une méthode avant chaque test.
-
-* `@Test` : Annotation JUnit pour indiquer que la méthode est un test.
-
-* `MockitoAnnotations.openMocks(this)` : Initialisation des mocks avec Mockito.
-
-* `when(...).thenReturn(...) `: Utilisé pour définir le comportement attendu du mock.
-
-* `perform(...)` : Méthode de MockMvc pour exécuter la requête.
-
-* `andExpect(...)` : Méthodes de MockMvcResultMatchers pour vérifier les résultats attendus de la requête.
-
-# Explications
-* `@SpringBootTest` : Cette annotation indique à Spring Boot de charger l'application entière pour le test.
-
-* `@AutoConfigureMockMvc` : Cette annotation est utilisée pour configurer automatiquement MockMvc.
-
-* `@Mock et @InjectMocks` : Ces annotations de Mockito sont utilisées pour injecter les dépendances simulées dans le contrôleur TeamController.
-
-* `@Autowired` : Utilisé pour injecter le WebApplicationContext.
-
-* `@BeforeEach` : Cette méthode est exécutée avant chaque test pour configurer Rest Assured Mock MVC avec le contexte de l'application Web.
-
-* `MockitoAnnotations.openMocks(this)` : Initialisation des mocks avec Mockito.
-
-* `RestAssuredMockMvc.mockMvc(mockMvc)` : Cette méthode configure Rest Assured Mock MVC avec le MockMvc configuré pour votre contrôleur.
-
-* `given(), when(), then()` : Méthodes de Rest Assured pour spécifier les conditions initiales, l'action à tester, et les assertions à effectuer.
-
-* `.get(), .post(), .delete()` : Méthodes pour effectuer les requêtes HTTP GET, POST, DELETE respectivement.
-
-* `.statusCode()` : Vérifie le code de statut HTTP retourné.
-
-* `.contentType()` : Vérifie le type de contenu retourné.
-
-* `.body()` : Vérifie le contenu du corps de la réponse.
-
-
-# Explications des ajouts et modifications :
->`Test testGetAllTeams` : Ajout de vérifications pour chaque élément de la liste retournée afin de s'assurer que les attributs sont corrects.
-
-> `Test testGetTeamById` : Vérifie que les détails de l'équipe retournée par l'ID sont corrects.
-
-> `Test testCreateTeam `: Vérifie que la création d'une nouvelle équipe fonctionne et que les détails de l'équipe créée sont corrects.
-
-> `Test testDeleteTeam `: Vérifie que la suppression d'une équipe retourne le statut 204 No Content.
-
-
-
-
-Pour annuler un commit dans Git, il existe plusieurs méthodes, chacune ayant ses propres avantages et inconvénients. Le choix de la méthode la plus adaptée dépend de votre situation spécifique :
-
-**1. `git reset`**
-
-La commande `git reset` permet de déplacer le pointeur HEAD vers un commit antérieur, annulant ainsi les commits ultérieurs. Elle est utile pour annuler des commits locaux qui n'ont pas encore été poussés vers un dépôt distant.
-
-**Syntaxe de base :**
+Expliquez la structure des fichiers et répertoires dans votre projet.
 
 ```
-git reset <commit>
+votre-projet-backend/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── fr.sorbonne.paris.nord.university.api/
+│   │   │   │   ├── controllers/      # Contrôleurs API
+│   │   │   │   ├── dtos/             # DTOs (Data Transfer Objects)
+│   │   │   │   ├── entities/         # Entités JPA
+│   │   │   │   ├── exceptions/       # Gestion des exceptions
+│   │   │   │   ├── mappers/          # Mappers (pour convertir entre entités et DTOs)
+│   │   │   │   ├── repositories/     # Interfaces de repositories JPA
+│   │   │   │   ├── services/         # Services métier
+│   │   │   │   └── Application.java  # Classe principale Spring Boot
+│   │   └── resources/
+│   │       ├── application.properties  # Configuration de l'application
+│   │       ├── data.sql               # Script SQL pour les données initiales
+│   │       └── schema.sql             # Script SQL pour le schéma de base de données
+│   └── test/
+│       ├── java/
+│       │   └── fr.sorbonne.paris.nord.university.api/
+│       │       ├── controllers/      # Tests des contrôleurs API
+│       │       ├── services/         # Tests des services métier
+│       │       └── ApplicationTests.java  # Classe de test principale
+│       └── resources/
+│           └── application-test.properties  # Configuration des tests
+└── pom.xml (ou build.gradle)            # Fichier de configuration Maven ou Gradle
 ```
 
-**Options utiles :**
+## Endpoints API
 
-* `--soft` : Annule le commit mais conserve les modifications dans l'index. Vous devrez ensuite commiter ces modifications manuellement.
-* `--hard` : Annule le commit et supprime toutes les modifications non sauvegardées dans l'index et dans l'arborescence de travail.
+Liste des endpoints de votre API avec leurs descriptions et les méthodes HTTP correspondantes.
 
-**Exemple :**
+### Teams
 
-Pour annuler le dernier commit local et conserver les modifications dans l'index, utilisez la commande suivante :
+- `GET /api/teams` : Récupère toutes les équipes
+- `GET /api/teams/{id}` : Récupère une équipe par ID
+- `POST /api/teams` : Crée une nouvelle équipe
+- `PUT /api/teams/{id}` : Met à jour une équipe existante
+- `DELETE /api/teams/{id}` : Supprime une équipe par ID
 
-```
-git reset --soft HEAD~1
-```
+### Autres endpoints...
 
-**2. `git revert`**
+## Tests
 
-La commande `git revert` crée un nouveau commit qui inverse les modifications apportées par un commit spécifique. Cette méthode est utile pour annuler des commits qui ont déjà été poussés vers un dépôt distant, car elle permet de préserver l'historique des commits.
+Expliquez comment exécuter les tests unitaires et les tests d'intégration.
 
-**Syntaxe de base :**
-
-```
-git revert <commit>
-```
-
-**Exemple :**
-
-Pour annuler le dernier commit poussé vers le dépôt distant, utilisez la commande suivante :
-
-```
-git revert HEAD~1
+```bash
+# Exécuter les tests
+mvn test
 ```
 
-**3. `git checkout`**
+## Déploiement
 
-La commande `git checkout` permet de changer de branche ou de restaurer un fichier à une version antérieure. Elle peut être utilisée pour annuler un commit en restaurant l'état des fichiers à l'état précédant le commit.
+Donnez des instructions sur le déploiement de votre application backend, que ce soit sur un serveur local ou dans le cloud.
 
-**Syntaxe de base :**
-
-```
-git checkout <fichier> <commit>
-```
-
-**Exemple :**
-
-Pour restaurer le fichier `index.html` à l'état précédant le dernier commit, utilisez la commande suivante :
-
-```
-git checkout index.html HEAD~1
+```bash
+# Démarrer l'application
+mvn spring-boot:run
 ```
 
-**Remarques importantes :**
+## Contribuer
 
-* **Annuler un commit local est simple.** Il vous suffit d'utiliser la commande `git reset` avec l'option appropriée.
-* **Annuler un commit distant est plus délicat.** Il est important de ne pas réécrire l'historique des commits, car cela pourrait causer des problèmes aux autres contributeurs. Utilisez la commande `git revert` pour créer un nouveau commit qui inverse les modifications du commit annulé.
-* **Avant d'annuler un commit, assurez-vous que vous avez sauvegardé toutes les modifications importantes.** Les commits annulés ne peuvent généralement pas être récupérés.
+Indiquez comment les utilisateurs peuvent contribuer à votre projet ou signaler des problèmes.
 
-**Ressources supplémentaires :**
+1. Forkez le projet
+2. Créez une branche pour votre contribution (`git checkout -b feature/NouvelleFonctionnalité`)
+3. Committez vos modifications (`git commit -am 'Ajout d'une nouvelle fonctionnalité'`)
+4. Pushez sur la branche (`git push origin feature/NouvelleFonctionnalité`)
+5. Créez un pull request
 
 
+---
 
-N'hésitez pas à me poser d'autres questions si vous avez besoin de plus d'informations.
